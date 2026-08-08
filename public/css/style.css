@@ -1,0 +1,16 @@
+/* Styling utama pakai Tailwind CDN (lihat views/partials/head.ejs).
+   File ini hanya untuk animasi hamburger -> X yang lebih rapi ditulis manual. */
+
+.hamburger-btn.is-open .hamburger-bar:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
+}
+.hamburger-btn.is-open .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-btn.is-open .hamburger-bar:nth-child(3) {
+  transform: translateY(-8.5px) rotate(-45deg);
+}
+
+html {
+  scroll-behavior: smooth;
+}
