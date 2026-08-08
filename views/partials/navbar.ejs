@@ -1,0 +1,55 @@
+<header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+  <nav aria-label="Navigasi utama" class="max-w-6xl mx-auto px-4 sm:px-6 py-3 relative">
+    <div class="flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 font-bold text-primary-dark text-lg">
+        <span aria-hidden="true" class="text-2xl">🛒</span>
+        <span>Toko Sembako Ariesta</span>
+      </a>
+
+      <!-- Menu desktop -->
+      <ul class="hidden md:flex items-center gap-8">
+        <li>
+          <a href="/" class="font-medium pb-1 border-b-2 <%= activePage === 'beranda' ? 'border-primary text-primary' : 'border-transparent text-gray-700 hover:text-primary hover:border-primary' %> transition-colors">Beranda</a>
+        </li>
+        <li>
+          <a href="/produk" class="font-medium pb-1 border-b-2 <%= activePage === 'produk' ? 'border-primary text-primary' : 'border-transparent text-gray-700 hover:text-primary hover:border-primary' %> transition-colors">Produk</a>
+        </li>
+        <li>
+          <a href="/tanya-ai" class="font-medium pb-1 border-b-2 <%= activePage === 'tanya-ai' ? 'border-primary text-primary' : 'border-transparent text-gray-700 hover:text-primary hover:border-primary' %> transition-colors">Tanya AI</a>
+        </li>
+        <li>
+          <a href="/api/products" target="_blank" rel="noopener" class="font-medium text-gray-700 hover:text-primary transition-colors">API Produk</a>
+        </li>
+      </ul>
+
+      <!-- Tombol hamburger (mobile) -->
+      <button
+        id="hamburgerBtn"
+        class="hamburger-btn md:hidden flex flex-col justify-between w-6 h-5"
+        aria-label="Buka menu navigasi"
+        aria-expanded="false"
+        aria-controls="navMenu"
+      >
+        <span class="hamburger-bar block h-0.5 w-full bg-primary-dark rounded transition-transform duration-200"></span>
+        <span class="hamburger-bar block h-0.5 w-full bg-primary-dark rounded transition-opacity duration-200"></span>
+        <span class="hamburger-bar block h-0.5 w-full bg-primary-dark rounded transition-transform duration-200"></span>
+      </button>
+    </div>
+
+    <!-- Menu mobile -->
+    <ul id="navMenu" class="hidden md:hidden flex-col mt-3 border-t border-gray-200 pt-2">
+      <li>
+        <a href="/" class="block py-3 px-2 font-medium border-b border-gray-100 <%= activePage === 'beranda' ? 'text-primary' : 'text-gray-700' %>">Beranda</a>
+      </li>
+      <li>
+        <a href="/produk" class="block py-3 px-2 font-medium border-b border-gray-100 <%= activePage === 'produk' ? 'text-primary' : 'text-gray-700' %>">Produk</a>
+      </li>
+      <li>
+        <a href="/tanya-ai" class="block py-3 px-2 font-medium border-b border-gray-100 <%= activePage === 'tanya-ai' ? 'text-primary' : 'text-gray-700' %>">Tanya AI</a>
+      </li>
+      <li>
+        <a href="/api/products" target="_blank" rel="noopener" class="block py-3 px-2 font-medium text-gray-700">API Produk</a>
+      </li>
+    </ul>
+  </nav>
+</header>

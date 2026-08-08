@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <%- include('partials/navbar') %>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 sm:px-6">
+    <section class="pt-8 pb-4">
+      <h1 class="text-2xl sm:text-3xl font-bold text-primary-dark mb-1">Tanya AI</h1>
+      <p class="text-gray-600">Punya pertanyaan seputar stok, harga, atau jam operasional? Tanyakan di sini.</p>
+    </section>
+
+    <section aria-labelledby="chat-title" class="py-4 pb-12 flex flex-col gap-5">
+      <h2 id="chat-title" class="sr-only">Ruang Percakapan</h2>
+
+      <div id="chatWindow" aria-live="polite" class="bg-white border border-gray-200 rounded-xl p-5 min-h-[220px] flex flex-col gap-3">
+        <div class="max-w-[80%] bg-primary-light rounded-2xl rounded-bl-sm px-4 py-3 text-sm self-start">
+          <p>Halo! Aku belum bisa membalas pertanyaan secara otomatis di sesi ini. Fitur balasan akan aktif di Sprint 2 ya 🙂</p>
+        </div>
+      </div>
+
+      <form id="chatForm" action="/tanya-ai" method="GET" class="flex flex-wrap items-end gap-4">
+        <div class="flex flex-col gap-1 flex-1 min-w-[250px]">
+          <label for="chatInput" class="text-sm font-semibold">Tulis pertanyaanmu</label>
+          <input
+            type="text"
+            id="chatInput"
+            name="pertanyaan"
+            placeholder="Contoh: Gula sekilo berapa?"
+            autocomplete="off"
+            class="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+        </div>
+        <button type="submit" class="px-6 py-2.5 rounded-lg font-semibold bg-primary text-white hover:bg-primary-dark transition-colors">Kirim</button>
+      </form>
+
+      <aside aria-label="Contoh pertanyaan" class="bg-white border border-dashed border-gray-300 rounded-xl px-5 py-4">
+        <h3 class="text-sm font-semibold text-gray-500 mb-2">Contoh pertanyaan yang bisa kamu tanyakan nanti:</h3>
+        <ul class="flex flex-col gap-1 text-sm text-gray-500">
+          <li>"Gula sekilo berapa?"</li>
+          <li>"Masih ada beras 5kg?"</li>
+          <li>"Bisa antar ga?"</li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <%- include('partials/navbar') %>
+
+  <main id="main-content">
+    <section class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 sm:px-6 py-16">
+      <div class="max-w-6xl mx-auto max-w-2xl">
+        <h1 class="text-3xl sm:text-4xl font-bold mb-4">Belanja Sembako Jadi Lebih Mudah</h1>
+        <p class="text-base sm:text-lg opacity-95 mb-6">
+          Cek stok dan harga terbaru kapan saja, tanpa perlu menunggu balasan WhatsApp.
+          Toko Sembako Ariesta menyediakan kebutuhan pokok harian dengan harga bersahabat.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/produk" class="inline-block px-6 py-3 rounded-lg font-semibold bg-white text-primary-dark hover:bg-gray-100 transition-colors">Lihat Semua Produk</a>
+          <a href="/tanya-ai" class="inline-block px-6 py-3 rounded-lg font-semibold bg-accent text-yellow-950 hover:brightness-95 transition">Tanya AI</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <h2 class="text-2xl font-bold text-primary-dark mb-6">Produk Pilihan</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <% preview.forEach(function(p) { %>
+          <article class="bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-1 hover:shadow-lg hover:-translate-y-0.5 transition">
+            <div class="text-4xl mb-1" aria-hidden="true">📦</div>
+            <h3 class="font-semibold"><%= p.name %></h3>
+            <p class="text-sm text-gray-500 capitalize"><%= p.category %></p>
+            <p class="font-bold text-primary-dark">Rp <%= p.price.toLocaleString('id-ID') %></p>
+            <p class="text-sm text-gray-500">Stok: <%= p.stock %></p>
+            <a href="/produk/<%= p.id %>" class="mt-2 text-center border-2 border-primary text-primary rounded-lg py-2 font-semibold hover:bg-primary hover:text-white transition-colors">Lihat Detail</a>
+          </article>
+        <% }); %>
+      </div>
+      <div class="text-center mt-8">
+        <a href="/produk" class="inline-block px-6 py-3 rounded-lg font-semibold bg-primary text-white hover:bg-primary-dark transition-colors">Lihat Semua Produk &rarr;</a>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <h2 class="text-2xl font-bold text-primary-dark mb-6">Kenapa Belanja di Sini?</h2>
+      <div class="flex flex-wrap gap-5">
+        <article class="flex-1 min-w-[220px] bg-white border border-gray-200 rounded-xl p-5">
+          <h3 class="font-semibold text-primary-dark mb-1">Harga Transparan</h3>
+          <p class="text-sm text-gray-600">Semua harga tercantum jelas, tidak perlu tanya-tanya lagi lewat chat.</p>
+        </article>
+        <article class="flex-1 min-w-[220px] bg-white border border-gray-200 rounded-xl p-5">
+          <h3 class="font-semibold text-primary-dark mb-1">Stok Real-time</h3>
+          <p class="text-sm text-gray-600">Data stok selalu diperbarui langsung oleh pemilik toko.</p>
+        </article>
+        <article class="flex-1 min-w-[220px] bg-white border border-gray-200 rounded-xl p-5">
+          <h3 class="font-semibold text-primary-dark mb-1">Tanya AI</h3>
+          <p class="text-sm text-gray-600">Punya pertanyaan umum? Fitur Tanya AI siap membantu kapan saja.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
