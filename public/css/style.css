@@ -1,16 +1,35 @@
 /* Styling utama pakai Tailwind CDN (lihat views/partials/head.ejs).
-   File ini hanya untuk animasi hamburger -> X yang lebih rapi ditulis manual. */
+   File ini hanya untuk detail yang lebih rapi ditulis manual:
+   animasi hamburger -> X, dan "lubang" pada kartu produk gaya label harga. */
 
 .hamburger-btn.is-open .hamburger-bar:nth-child(1) {
-  transform: translateY(8.5px) rotate(45deg);
+  transform: translateY(9.5px) rotate(45deg);
 }
 .hamburger-btn.is-open .hamburger-bar:nth-child(2) {
   opacity: 0;
 }
 .hamburger-btn.is-open .hamburger-bar:nth-child(3) {
-  transform: translateY(-8.5px) rotate(-45deg);
+  transform: translateY(-9.5px) rotate(-45deg);
 }
 
 html {
   scroll-behavior: smooth;
 }
+
+/* Lubang gantungan di kartu produk (gaya label harga pasar) */
+.price-tag {
+  box-shadow: 3px 3px 0 0 #1c2b22;
+}
+
+.tag-hole {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background-color: #f6efe1;
+  border: 2px solid #1c2b22;
+  border-radius: 999px;
+}
+
