@@ -1,55 +1,81 @@
-<header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+<header class="bg-paper border-b-4 border-ink sticky top-0 z-50">
   <nav aria-label="Navigasi utama" class="max-w-6xl mx-auto px-4 sm:px-6 py-3 relative">
     <div class="flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2 font-bold text-primary-dark text-lg">
-        <span aria-hidden="true" class="text-2xl">🛒</span>
-        <span>Toko Sembako Ariesta</span>
+      <a href="/" class="flex items-center gap-3 group">
+        <span class="relative flex items-center justify-center w-11 h-11 bg-spice rounded-full border-2 border-ink -rotate-6 group-hover:rotate-0 transition-transform" aria-hidden="true">
+          <span class="text-lg">🌾</span>
+        </span>
+        <span class="font-display font-bold text-xl text-ink leading-tight">Toko Sembako<br class="hidden sm:block" /> Ariesta</span>
       </a>
 
       <!-- Menu desktop -->
-      <ul class="hidden md:flex items-center gap-8">
+      <ul class="hidden md:flex items-center gap-2 font-body">
         <li>
-          <a href="/" class="font-medium pb-1 border-b-2 <%= activePage === 'beranda' ? 'border-primary text-primary' : 'border-transparent text-gray-700 hover:text-primary hover:border-primary' %> transition-colors">Beranda</a>
+          <a href="/" class="px-4 py-2 rounded-full font-semibold text-sm transition-colors <%= activePage === 'beranda' ? 'bg-ink text-paper' : 'text-ink hover:bg-market-light' %>">Beranda</a>
         </li>
         <li>
-          <a href="/produk" class="font-medium pb-1 border-b-2 <%= activePage === 'produk' ? 'border-primary text-primary' : 'border-transparent text-gray-700 hover:text-primary hover:border-primary' %> transition-colors">Produk</a>
+          <a href="/produk" class="px-4 py-2 rounded-full font-semibold text-sm transition-colors <%= activePage === 'produk' ? 'bg-ink text-paper' : 'text-ink hover:bg-market-light' %>">Produk</a>
         </li>
         <li>
-          <a href="/tanya-ai" class="font-medium pb-1 border-b-2 <%= activePage === 'tanya-ai' ? 'border-primary text-primary' : 'border-transparent text-gray-700 hover:text-primary hover:border-primary' %> transition-colors">Tanya AI</a>
+          <a href="/tanya-ai" class="px-4 py-2 rounded-full font-semibold text-sm transition-colors <%= activePage === 'tanya-ai' ? 'bg-ink text-paper' : 'text-ink hover:bg-market-light' %>">Tanya AI</a>
         </li>
         <li>
-          <a href="/api/products" target="_blank" rel="noopener" class="font-medium text-gray-700 hover:text-primary transition-colors">API Produk</a>
+          <a href="/api/products" target="_blank" rel="noopener" class="px-4 py-2 rounded-full font-semibold text-sm text-ink/70 hover:text-ink transition-colors">API</a>
         </li>
+        <% if (isLoggedIn) { %>
+          <li>
+            <a href="/dashboard" class="px-4 py-2 rounded-full font-semibold text-sm transition-colors <%= activePage === 'dashboard' ? 'bg-ink text-paper' : 'text-ink hover:bg-market-light' %>">Dashboard</a>
+          </li>
+          <li>
+            <button id="logoutBtn" class="px-4 py-2 rounded-full font-semibold text-sm bg-spice text-paper hover:brightness-95 transition">Logout</button>
+          </li>
+        <% } else { %>
+          <li>
+            <a href="/login" class="px-4 py-2 rounded-full font-semibold text-sm bg-market text-paper hover:bg-market-dark transition-colors">Login Admin</a>
+          </li>
+        <% } %>
       </ul>
 
       <!-- Tombol hamburger (mobile) -->
       <button
         id="hamburgerBtn"
-        class="hamburger-btn md:hidden flex flex-col justify-between w-6 h-5"
+        class="hamburger-btn md:hidden flex flex-col justify-between w-7 h-5"
         aria-label="Buka menu navigasi"
         aria-expanded="false"
         aria-controls="navMenu"
       >
-        <span class="hamburger-bar block h-0.5 w-full bg-primary-dark rounded transition-transform duration-200"></span>
-        <span class="hamburger-bar block h-0.5 w-full bg-primary-dark rounded transition-opacity duration-200"></span>
-        <span class="hamburger-bar block h-0.5 w-full bg-primary-dark rounded transition-transform duration-200"></span>
+        <span class="hamburger-bar block h-[3px] w-full bg-ink rounded transition-transform duration-200"></span>
+        <span class="hamburger-bar block h-[3px] w-full bg-ink rounded transition-opacity duration-200"></span>
+        <span class="hamburger-bar block h-[3px] w-full bg-ink rounded transition-transform duration-200"></span>
       </button>
     </div>
 
     <!-- Menu mobile -->
-    <ul id="navMenu" class="hidden md:hidden flex-col mt-3 border-t border-gray-200 pt-2">
+    <ul id="navMenu" class="hidden md:hidden flex-col mt-3 border-t-2 border-dashed border-ink/30 pt-2 font-body">
       <li>
-        <a href="/" class="block py-3 px-2 font-medium border-b border-gray-100 <%= activePage === 'beranda' ? 'text-primary' : 'text-gray-700' %>">Beranda</a>
+        <a href="/" class="block py-3 px-2 font-semibold border-b border-ink/10 <%= activePage === 'beranda' ? 'text-spice' : 'text-ink' %>">Beranda</a>
       </li>
       <li>
-        <a href="/produk" class="block py-3 px-2 font-medium border-b border-gray-100 <%= activePage === 'produk' ? 'text-primary' : 'text-gray-700' %>">Produk</a>
+        <a href="/produk" class="block py-3 px-2 font-semibold border-b border-ink/10 <%= activePage === 'produk' ? 'text-spice' : 'text-ink' %>">Produk</a>
       </li>
       <li>
-        <a href="/tanya-ai" class="block py-3 px-2 font-medium border-b border-gray-100 <%= activePage === 'tanya-ai' ? 'text-primary' : 'text-gray-700' %>">Tanya AI</a>
+        <a href="/tanya-ai" class="block py-3 px-2 font-semibold border-b border-ink/10 <%= activePage === 'tanya-ai' ? 'text-spice' : 'text-ink' %>">Tanya AI</a>
       </li>
       <li>
-        <a href="/api/products" target="_blank" rel="noopener" class="block py-3 px-2 font-medium text-gray-700">API Produk</a>
+        <a href="/api/products" target="_blank" rel="noopener" class="block py-3 px-2 font-semibold text-ink/70">API Produk</a>
       </li>
+      <% if (isLoggedIn) { %>
+        <li>
+          <a href="/dashboard" class="block py-3 px-2 font-semibold border-b border-ink/10 <%= activePage === 'dashboard' ? 'text-spice' : 'text-ink' %>">Dashboard</a>
+        </li>
+        <li>
+          <button id="logoutBtnMobile" class="block w-full text-left py-3 px-2 font-semibold text-spice">Logout</button>
+        </li>
+      <% } else { %>
+        <li>
+          <a href="/login" class="block py-3 px-2 font-semibold text-market">Login Admin</a>
+        </li>
+      <% } %>
     </ul>
   </nav>
 </header>

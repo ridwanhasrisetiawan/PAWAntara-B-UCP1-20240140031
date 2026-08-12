@@ -1,18 +1,28 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title><%= title %> | Toko Sembako Ariesta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
     theme: {
       extend: {
+        fontFamily: {
+          display: ["Fraunces", "serif"],
+          body: ["Space Grotesk", "sans-serif"],
+        },
         colors: {
-          primary: {
-            DEFAULT: "#2f7d32",
-            dark: "#1e5e21",
-            light: "#f2f7f2",
+          ink: "#1c2b22",
+          paper: "#f6efe1",
+          market: {
+            DEFAULT: "#2c5f3e",
+            dark: "#1d4029",
+            light: "#e6efe2",
           },
-          accent: "#f5a623",
+          spice: "#d9622b",
+          tag: "#f2c46d",
         },
       },
     },

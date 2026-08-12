@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body class="bg-paper text-ink font-body">
+  <%- include('partials/navbar') %>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 sm:px-6">
+    <section class="pt-10 pb-6">
+      <span class="inline-block bg-tag text-ink text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3 -rotate-1 border-2 border-ink">Admin</span>
+      <h1 class="font-display font-black text-3xl sm:text-4xl mb-1">Dashboard Produk</h1>
+      <p class="text-ink/70">Halo<%= adminUsername ? ', ' + adminUsername : '' %>! Kelola produk toko dari sini — perubahan langsung tampil di halaman Produk publik.</p>
+    </section>
+
+    <!-- Notifikasi -->
+    <div id="dashboardNotice" class="hidden mb-5 rounded-xl px-4 py-3 text-sm font-semibold border-2" role="status"></div>
+
+    <!-- Form tambah / edit produk -->
+    <section aria-labelledby="form-title" class="mb-10">
+      <h2 id="form-title" class="font-display font-bold text-xl mb-3">
+        <span id="formModeLabel">Tambah Produk Baru</span>
+      </h2>
+      <form id="productForm" novalidate class="bg-white border-2 border-ink rounded-2xl p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-2 gap-4" style="box-shadow: 4px 4px 0 0 #1c2b22;">
+        <input type="hidden" id="productId" name="id" value="" />
+
+        <div class="flex flex-col gap-1">
+          <label for="name" class="text-sm font-bold">Nama Produk</label>
+          <input type="text" id="name" name="name" class="border-2 border-ink/30 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-market" />
+          <p class="field-error hidden text-xs text-spice font-semibold" data-for="name">Nama produk wajib diisi.</p>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="category" class="text-sm font-bold">Kategori</label>
+          <input type="text" id="category" name="category" placeholder="contoh: sembako" class="border-2 border-ink/30 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-market" />
+          <p class="field-error hidden text-xs text-spice font-semibold" data-for="category">Kategori wajib diisi.</p>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="price" class="text-sm font-bold">Harga (Rp)</label>
+          <input type="number" id="price" name="price" min="0" class="border-2 border-ink/30 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-market" />
+          <p class="field-error hidden text-xs text-spice font-semibold" data-for="price">Harga wajib diisi dan tidak boleh negatif.</p>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="stock" class="text-sm font-bold">Stok</label>
+          <input type="number" id="stock" name="stock" min="0" class="border-2 border-ink/30 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-market" />
+          <p class="field-error hidden text-xs text-spice font-semibold" data-for="stock">Stok wajib diisi dan tidak boleh negatif.</p>
+        </div>
+
+        <div class="flex flex-col gap-1 sm:col-span-2">
+          <label for="description" class="text-sm font-bold">Deskripsi</label>
+          <textarea id="description" name="description" rows="2" class="border-2 border-ink/30 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-market"></textarea>
+        </div>
+
+        <div class="sm:col-span-2 flex gap-3">
+          <button type="submit" id="productSubmitBtn" class="px-6 py-2.5 rounded-full font-bold bg-spice text-paper border-2 border-ink hover:-translate-y-0.5 transition-transform">
+            Simpan Produk
+          </button>
+          <button type="button" id="cancelEditBtn" class="hidden px-6 py-2.5 rounded-full font-bold bg-paper text-ink border-2 border-ink hover:-translate-y-0.5 transition-transform">
+            Batal Edit
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Tabel produk -->
+    <section aria-labelledby="table-title" class="pb-16">
+      <h2 id="table-title" class="font-display font-bold text-xl mb-3">Semua Produk</h2>
+      <div class="overflow-x-auto bg-white border-2 border-ink rounded-2xl" style="box-shadow: 4px 4px 0 0 #1c2b22;">
+        <table class="w-full text-sm text-left">
+          <thead>
+            <tr class="bg-market text-paper">
+              <th class="px-4 py-3 font-display">Nama</th>
+              <th class="px-4 py-3 font-display">Kategori</th>
+              <th class="px-4 py-3 font-display">Harga</th>
+              <th class="px-4 py-3 font-display">Stok</th>
+              <th class="px-4 py-3 font-display">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="productTableBody">
+            <tr>
+              <td colspan="5" class="px-4 py-6 text-center text-ink/50">Memuat data produk...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

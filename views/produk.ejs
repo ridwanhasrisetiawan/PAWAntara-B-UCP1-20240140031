@@ -3,74 +3,56 @@
 <head>
   <%- include('partials/head') %>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-paper text-ink font-body">
   <%- include('partials/navbar') %>
 
   <main id="main-content" class="max-w-6xl mx-auto px-4 sm:px-6">
-    <section class="pt-8 pb-4">
-      <h1 class="text-2xl sm:text-3xl font-bold text-primary-dark mb-1">Daftar Produk</h1>
-      <p class="text-gray-600">Semua kebutuhan pokok yang tersedia di Toko Sembako Ariesta.</p>
+    <section class="pt-10 pb-6">
+      <span class="inline-block bg-tag text-ink text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3 -rotate-1 border-2 border-ink">Katalog</span>
+      <h1 class="font-display font-black text-3xl sm:text-4xl mb-1">Daftar Produk</h1>
+      <p class="text-ink/70">Semua kebutuhan pokok yang tersedia di Toko Sembako Ariesta.</p>
     </section>
 
     <section aria-labelledby="filter-title" class="py-4">
       <h2 id="filter-title" class="sr-only">Filter Produk</h2>
-      <form action="/produk" method="GET" class="bg-white border border-gray-200 rounded-xl p-5 flex flex-wrap items-end gap-4">
+      <form id="filterForm" class="bg-white border-2 border-ink rounded-2xl p-5 flex flex-wrap items-end gap-4" style="box-shadow: 4px 4px 0 0 #1c2b22;">
         <div class="flex flex-col gap-1 flex-1 min-w-[200px]">
-          <label for="search" class="text-sm font-semibold">Cari nama produk</label>
+          <label for="search" class="text-sm font-bold">Cari nama produk</label>
           <input
             type="search"
             id="search"
             name="search"
             placeholder="Contoh: beras"
-            value="<%= searchTerm %>"
-            class="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            class="border-2 border-ink/30 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-market"
           />
         </div>
 
         <div class="flex flex-col gap-1 flex-1 min-w-[200px]">
-          <label for="kategori" class="text-sm font-semibold">Kategori</label>
-          <select id="kategori" name="kategori" class="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+          <label for="kategori" class="text-sm font-bold">Kategori</label>
+          <select id="kategori" name="kategori" class="border-2 border-ink/30 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-market">
             <option value="">Semua Kategori</option>
-            <% categories.forEach(function(cat) { %>
-              <option value="<%= cat %>" <%= selectedKategori === cat ? 'selected' : '' %>>
-                <%= cat.charAt(0).toUpperCase() + cat.slice(1) %>
-              </option>
-            <% }); %>
           </select>
         </div>
 
         <div class="flex gap-2">
-          <button type="submit" class="px-5 py-2 rounded-lg font-semibold bg-primary text-white hover:bg-primary-dark transition-colors">Terapkan Filter</button>
-          <a href="/produk" class="px-5 py-2 rounded-lg font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors text-center">Reset</a>
+          <button type="submit" class="px-5 py-2.5 rounded-full font-bold bg-spice text-paper border-2 border-ink hover:-translate-y-0.5 transition-transform">Terapkan Filter</button>
+          <button type="button" id="resetFilterBtn" class="px-5 py-2.5 rounded-full font-bold bg-paper text-ink border-2 border-ink hover:-translate-y-0.5 transition-transform">Reset</button>
         </div>
       </form>
     </section>
 
-    <section aria-labelledby="list-title" class="py-4 pb-12">
+    <section aria-labelledby="list-title" class="py-6 pb-16">
       <h2 id="list-title" class="sr-only">Hasil Produk</h2>
-
-      <% if (products.length === 0) { %>
-        <p class="text-center text-gray-500 py-12">Tidak ada produk yang cocok dengan filter kamu.</p>
-      <% } else { %>
-        <p class="text-gray-500 mb-4"><%= products.length %> produk ditemukan.</p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <% products.forEach(function(p) { %>
-            <article class="bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-1 hover:shadow-lg hover:-translate-y-0.5 transition">
-              <div class="text-4xl mb-1" aria-hidden="true">📦</div>
-              <h3 class="font-semibold"><%= p.name %></h3>
-              <p class="text-sm text-gray-500 capitalize"><%= p.category %></p>
-              <p class="font-bold text-primary-dark">Rp <%= p.price.toLocaleString('id-ID') %></p>
-              <p class="text-sm text-gray-500">Stok: <%= p.stock %></p>
-              <a href="/produk/<%= p.id %>" class="mt-2 text-center border-2 border-primary text-primary rounded-lg py-2 font-semibold hover:bg-primary hover:text-white transition-colors">Lihat Detail</a>
-            </article>
-          <% }); %>
-        </div>
-      <% } %>
+      <p id="resultCount" class="text-ink/60 mb-4 text-sm"></p>
+      <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-3">
+        <p class="col-span-full text-center text-ink/50 py-12 font-display">Memuat produk...</p>
+      </div>
     </section>
   </main>
 
   <%- include('partials/footer') %>
 
   <script src="/js/main.js"></script>
+  <script src="/js/produk.js"></script>
 </body>
 </html>

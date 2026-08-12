@@ -3,45 +3,48 @@
 <head>
   <%- include('partials/head') %>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-paper text-ink font-body">
   <%- include('partials/navbar') %>
 
   <main id="main-content" class="max-w-6xl mx-auto px-4 sm:px-6">
-    <section class="pt-8 pb-4">
-      <h1 class="text-2xl sm:text-3xl font-bold text-primary-dark mb-1">Tanya AI</h1>
-      <p class="text-gray-600">Punya pertanyaan seputar stok, harga, atau jam operasional? Tanyakan di sini.</p>
+    <section class="pt-10 pb-6">
+      <span class="inline-block bg-tag text-ink text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3 -rotate-1 border-2 border-ink">Chat Bantuan</span>
+      <h1 class="font-display font-black text-3xl sm:text-4xl mb-1">Tanya AI</h1>
+      <p class="text-ink/70">Punya pertanyaan seputar stok, harga, atau jam operasional? Tanyakan di sini.</p>
     </section>
 
-    <section aria-labelledby="chat-title" class="py-4 pb-12 flex flex-col gap-5">
+    <section aria-labelledby="chat-title" class="py-4 pb-16 flex flex-col gap-5 max-w-2xl">
       <h2 id="chat-title" class="sr-only">Ruang Percakapan</h2>
 
-      <div id="chatWindow" aria-live="polite" class="bg-white border border-gray-200 rounded-xl p-5 min-h-[220px] flex flex-col gap-3">
-        <div class="max-w-[80%] bg-primary-light rounded-2xl rounded-bl-sm px-4 py-3 text-sm self-start">
-          <p>Halo! Aku belum bisa membalas pertanyaan secara otomatis di sesi ini. Fitur balasan akan aktif di Sprint 2 ya 🙂</p>
+      <div id="chatWindow" aria-live="polite" class="bg-white border-2 border-ink rounded-2xl p-5 min-h-[280px] max-h-[420px] overflow-y-auto flex flex-col gap-3" style="box-shadow: 4px 4px 0 0 #1c2b22;">
+        <div class="max-w-[85%] bg-market-light border-2 border-market rounded-2xl rounded-bl-sm px-4 py-3 text-sm self-start">
+          <p>Halo! Aku asisten toko (balasan otomatis dari server, bukan AI eksternal). Coba tanya soal jam buka, ongkir, cara bayar, atau stok produk ya 🙂</p>
         </div>
       </div>
 
-      <form id="chatForm" action="/tanya-ai" method="GET" class="flex flex-wrap items-end gap-4">
-        <div class="flex flex-col gap-1 flex-1 min-w-[250px]">
-          <label for="chatInput" class="text-sm font-semibold">Tulis pertanyaanmu</label>
+      <form id="chatForm" novalidate class="flex flex-wrap items-end gap-3">
+        <div class="flex flex-col gap-1 flex-1 min-w-[220px]">
+          <label for="chatInput" class="text-sm font-bold">Tulis pertanyaanmu</label>
           <input
             type="text"
             id="chatInput"
             name="pertanyaan"
             placeholder="Contoh: Gula sekilo berapa?"
             autocomplete="off"
-            class="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            class="border-2 border-ink/30 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-market"
           />
+          <p class="field-error hidden text-xs text-spice font-semibold" data-for="chatInput">Pertanyaan tidak boleh kosong.</p>
         </div>
-        <button type="submit" class="px-6 py-2.5 rounded-lg font-semibold bg-primary text-white hover:bg-primary-dark transition-colors">Kirim</button>
+        <button type="submit" id="chatSubmitBtn" class="px-6 py-2.5 rounded-full font-bold bg-spice text-paper border-2 border-ink hover:-translate-y-0.5 transition-transform">Kirim</button>
       </form>
 
-      <aside aria-label="Contoh pertanyaan" class="bg-white border border-dashed border-gray-300 rounded-xl px-5 py-4">
-        <h3 class="text-sm font-semibold text-gray-500 mb-2">Contoh pertanyaan yang bisa kamu tanyakan nanti:</h3>
-        <ul class="flex flex-col gap-1 text-sm text-gray-500">
-          <li>"Gula sekilo berapa?"</li>
-          <li>"Masih ada beras 5kg?"</li>
-          <li>"Bisa antar ga?"</li>
+      <aside aria-label="Contoh pertanyaan" class="bg-white border-2 border-dashed border-ink/30 rounded-2xl px-5 py-4">
+        <h3 class="text-sm font-bold text-ink/60 mb-2">Contoh pertanyaan yang bisa kamu coba:</h3>
+        <ul class="flex flex-col gap-1 text-sm">
+          <li><button type="button" class="chat-suggestion text-spice hover:underline">"Jam buka toko kapan?"</button></li>
+          <li><button type="button" class="chat-suggestion text-spice hover:underline">"Bisa antar ga?"</button></li>
+          <li><button type="button" class="chat-suggestion text-spice hover:underline">"Bayar pakai apa aja?"</button></li>
+          <li><button type="button" class="chat-suggestion text-spice hover:underline">"Beras masih ada stok?"</button></li>
         </ul>
       </aside>
     </section>
@@ -50,5 +53,6 @@
   <%- include('partials/footer') %>
 
   <script src="/js/main.js"></script>
+  <script src="/js/chat.js"></script>
 </body>
 </html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body class="bg-paper text-ink font-body">
+  <%- include('partials/navbar') %>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 sm:px-6">
+    <section class="py-14 flex justify-center">
+      <div class="w-full max-w-md bg-white border-2 border-ink rounded-3xl p-7 sm:p-9" style="box-shadow: 6px 6px 0 0 #1c2b22;">
+        <span class="inline-block bg-tag text-ink text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4 -rotate-1 border-2 border-ink">Khusus Admin/Kasir</span>
+        <h1 class="font-display font-black text-2xl sm:text-3xl mb-1">Masuk ke Dashboard</h1>
+        <p class="text-sm text-ink/60 mb-6">Login untuk mengelola data produk toko.</p>
+
+        <div
+          id="loginError"
+          class="hidden bg-spice/10 border-2 border-spice text-spice text-sm font-semibold rounded-xl px-4 py-3 mb-4"
+          role="alert"
+        ></div>
+
+        <form id="loginForm" novalidate class="flex flex-col gap-4">
+          <div class="flex flex-col gap-1">
+            <label for="username" class="text-sm font-bold">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              autocomplete="username"
+              class="border-2 border-ink/30 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-market"
+            />
+            <p class="field-error hidden text-xs text-spice font-semibold" data-for="username">Username wajib diisi.</p>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label for="password" class="text-sm font-bold">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              autocomplete="current-password"
+              class="border-2 border-ink/30 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-market"
+            />
+            <p class="field-error hidden text-xs text-spice font-semibold" data-for="password">Password wajib diisi.</p>
+          </div>
+
+          <button
+            type="submit"
+            id="loginSubmitBtn"
+            class="mt-2 px-6 py-3 rounded-full font-bold bg-spice text-paper border-2 border-ink hover:-translate-y-0.5 transition-transform"
+          >
+            Login
+          </button>
+        </form>
+
+        <p class="text-xs text-ink/50 mt-5 text-center">Belum punya akun? Akun admin/kasir dibuat manual oleh pemilik toko, tidak ada pendaftaran publik.</p>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>
