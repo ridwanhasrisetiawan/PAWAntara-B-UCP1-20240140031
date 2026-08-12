@@ -45,4 +45,24 @@ document.addEventListener("DOMContentLoaded", function () {
       closeMenu();
     }
   });
+
+  // ===== Logout (dipanggil lewat Fetch API, ada di navbar semua halaman) =====
+  async function handleLogout() {
+    try {
+      const res = await fetch("/api/logout", { method: "POST" });
+      const result = await res.json();
+      if (result.status === "success") {
+        window.location.href = "/login";
+      } else {
+        alert(result.message || "Gagal logout, coba lagi.");
+      }
+    } catch (err) {
+      alert("Terjadi kesalahan koneksi saat logout.");
+    }
+  }
+
+  const logoutBtn = document.getElementById("logoutBtn");
+  const logoutBtnMobile = document.getElementById("logoutBtnMobile");
+  if (logoutBtn) logoutBtn.addEventListener("click", handleLogout);
+  if (logoutBtnMobile) logoutBtnMobile.addEventListener("click", handleLogout);
 });
